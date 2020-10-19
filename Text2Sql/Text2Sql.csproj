@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Text2SqlLib\Text2SqlLib.csproj" />
+    <ProjectReference Include="..\DsiSqlLib\DsiSqlLib.csproj" />
   </ItemGroup>
 
 </Project>

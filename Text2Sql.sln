@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29709.97
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Text2Sql", "Text2Sql\Text2Sql.csproj", "{9305C911-3796-4E6F-AD52-303EF089AD57}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Text2Sql", "Text2Sql\Text2Sql.csproj", "{9305C911-3796-4E6F-AD52-303EF089AD57}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Text2SqlLib", "Text2SqlLib\Text2SqlLib.csproj", "{A4B5AB3E-4B25-4842-9B90-0A9048B0D6B1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DsiSqlLib", "DsiSqlLib\DsiSqlLib.csproj", "{676CEAFF-F29A-4E13-BF16-E246B831AAA9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{9305C911-3796-4E6F-AD52-303EF089AD57}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9305C911-3796-4E6F-AD52-303EF089AD57}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9305C911-3796-4E6F-AD52-303EF089AD57}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A4B5AB3E-4B25-4842-9B90-0A9048B0D6B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A4B5AB3E-4B25-4842-9B90-0A9048B0D6B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A4B5AB3E-4B25-4842-9B90-0A9048B0D6B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A4B5AB3E-4B25-4842-9B90-0A9048B0D6B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{676CEAFF-F29A-4E13-BF16-E246B831AAA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{676CEAFF-F29A-4E13-BF16-E246B831AAA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{676CEAFF-F29A-4E13-BF16-E246B831AAA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{676CEAFF-F29A-4E13-BF16-E246B831AAA9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

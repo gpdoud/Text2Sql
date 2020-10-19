@@ -5,25 +5,28 @@ using System.Data.SqlClient;
 namespace Text2Sql {
     class Program {
         static void Main(string[] args) {
-            var connStr = @"server=localhost\sqlexpress;database=Text2Sql;trusted_connection=true;";
-            using var conn = new SqlConnection(connStr);
-            conn.Open();
-            if(conn.State != System.Data.ConnectionState.Open) {
-                throw new Exception("Connection did not open");
-            }
-            var sql = "insert into datatable values (@c0, @c1, @c2, @c3, @c4, @c5, @c6, @c7)";
-            using var cmd = new SqlCommand(sql, conn);
-            cmd.Parameters.Add(new SqlParameter("@c0", null));
-            cmd.Parameters.Add(new SqlParameter("@c1", null));
-            cmd.Parameters.Add(new SqlParameter("@c2", null));
-            cmd.Parameters.Add(new SqlParameter("@c3", null));
-            cmd.Parameters.Add(new SqlParameter("@c4", null));
-            cmd.Parameters.Add(new SqlParameter("@c5", null));
-            cmd.Parameters.Add(new SqlParameter("@c6", null));
-            cmd.Parameters.Add(new SqlParameter("@c7", null));
+            string[] colNames = {
+                "PAS_ID", "SRC_CD", "ACCTG_BASIS_CD", "REF_ID", "CMPNY_CD", "EAS_ACCT_NO",
+                "CLNDR_ACCTG_MNTH_NO", "CLNDR_ACCTG_YR_NO", "LOB_CD", "DBT_CR_IND",
+                "CONVERTED_AMT", "BCTR_CD", "REINS_CMPNY_CD", "STATE_CD", "TAX_STAT_TXT",
+                "HDR_DESC_TXT", "PLAN_CD", "SAP_ACCT_NO", "PRFT_CTR_TXT", "PLCY_NO",
+                "TRANS_DT", "CLNDR_DT", "MEMO_CD"
+            };
+            var slib = new Dsi.SqlLib();
+            var conn = slib.CreateSqlConnection("localhost\\sqlexpress", "Text2Sql");
+            slib.OpenConnection();
+            slib.ConstructSqlCommand("GERBER_PAS_DAILY", colNames);
 
             var data = LoadFile();
-            LoadDb(data, cmd);
+
+            for(var r = 1; r < data.Count; r++) {
+                var row = data[r];
+                for(var c = 0; c < row.Count; c++) {
+                    slib.SetSqlParameterValue($"@{colNames[c]}", row[c]);
+                }
+                slib.ExecuteNonQuery(); // exception on error
+            }
+            //LoadDb(data, cmd);
         }
         static void LoadDb(List<List<string>> data, SqlCommand cmd) {
             for(var idx = 1; idx < data.Count; idx++) {
@@ -42,8 +45,8 @@ namespace Text2Sql {
                 }
             }
         }
-        static List<List<string>> LoadFile() { 
-            var infileLines = System.IO.File.ReadAllLines(@"c:\Users\gpdou\Downloads\User.prn");
+        static List<List<string>> LoadFile() {
+            var infileLines = System.IO.File.ReadAllLines(@"c:\Users\gpdou\Downloads\gerber-pas-daily.pipedelim");
             var rows = new List<List<string>>();
             foreach(var line in infileLines) {
                 var flds = line.Split('|');
